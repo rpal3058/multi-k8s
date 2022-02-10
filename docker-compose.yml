@@ -1,7 +1,7 @@
-version: '3'
+version: "3"
 services:
   client:
-    image: 'rwijupal3058/client'
+    image: "rwijupal3058/client"
     mem_limit: 128m
     hostname: client
   server:
@@ -17,7 +17,7 @@ services:
       - PGPASSWORD=$PGPASSWORD
       - PGPORT=$PGPORT
   worker:
-    image: 'rwijupal3058/worker'
+    image: "rwijupal3058/worker"
     mem_limit: 128m
     hostname: worker
     environment:
@@ -28,6 +28,6 @@ services:
     mem_limit: 128m
     hostname: nginx
     ports: 
-      - '80:80'
+      - "80:80"
   
   
