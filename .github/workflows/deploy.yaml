@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: deploy to Docker Hub
       - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       - run: docker build -t rwijupal3058/client -f ./client/Dockerfile.dev ./client
       - run: docker run -e CI=true rwijupal3058/client npm test
@@ -23,8 +25,12 @@ jobs:
       - run: docker push rwijupal3058/nginx
       - run: docker push rwijupal3058/client
 
-      - name: Generate deployment package
-        run: zip -r deploy.zip . -x '*.git*'
+      
+      - name: kubectl-aws-eks
+        uses: kodermax/kubectl-aws-eks@1.0.8
+
+      - run: kubectl apply -f k8s
+
  
       # - name: Deploy to AWS
       #   uses: einaregilsson/beanstalk-deploy@v18
