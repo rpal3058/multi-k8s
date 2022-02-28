@@ -1,4 +1,4 @@
-name: Deploy multi-k8s
+name: Deploy Multicontainer
 on:
   push:
     branches:
